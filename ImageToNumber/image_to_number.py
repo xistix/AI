@@ -35,7 +35,7 @@ model = keras.Sequential(
 # compile the model with adam optimizer and sparse categorical crossentropy loss function
 model.compile(
     optimizer="adam",
-    loss="sparse_categorical_crossentropy",
+    loss="sparse_categorical_crossentropy",  # -Sum(P_true * log(P_pred)); where P_true is one-hot encoded vector that is generated internally by keras from integer labels
     metrics=["accuracy"],
 )
 
@@ -69,6 +69,8 @@ for i, prediction in enumerate(predictions):
 
 
 print("Evaluating the model on train data...")
+# loss is the average value of the loss function across all test samples
+# acc is the fraction of test samples that were classified correctly
 test_loss, test_acc = model.evaluate(train_images, train_labels)
 print("Test loss:", test_loss)
 print(f"Test accuracy: {test_acc}")
