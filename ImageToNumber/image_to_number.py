@@ -31,6 +31,12 @@ model = keras.Sequential(
     ]
 )
 
+# at this phase the wights are not yet initialized
+# the model needs to know the shape of the input data
+# it will initialize the weights during the first training step
+print("Model summary:")
+model.summary()
+
 
 # compile the model with adam optimizer and sparse categorical crossentropy loss function
 model.compile(
@@ -55,6 +61,9 @@ print(f"Test images shape: {test_images.shape}")
 print("training the model...")
 # train the model with training data for 5 epochs and batch size of 128
 model.fit(train_images, train_labels, epochs=5, batch_size=128)
+
+print("Model summary after training:")
+model.summary()
 
 
 test_digits = test_images[0:10]
